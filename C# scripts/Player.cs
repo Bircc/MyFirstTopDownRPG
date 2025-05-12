@@ -152,7 +152,7 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionPressed("mov_right")) { velocity.X += 1; }
 		if (Input.IsActionPressed("mov_left")) { velocity.X -= 1; }
 
-		GD.Print(velocity);
+		// GD.Print(velocity); debug code
 
 		// if moving
 		if (velocity.Length() != 0)
