@@ -10,6 +10,8 @@ public partial class Player : CharacterBody2D
 	private AnimatedSprite2D AnimSprite;
 	// init the normalizedvel value
 	private Vector2 NormalizedVel;
+	// init camera
+	private Camera2D PlayerCam;
 
 	// function for sprite control (parameters are the animated sprites and velocity)
 	private void PlaySpriteAnim(AnimatedSprite2D Sprite, Vector2 velocity)
@@ -118,7 +120,7 @@ public partial class Player : CharacterBody2D
 	// init stuff with ready
 	public override void _Ready()
 	{
-	// sprite stuff	
+	// sprite stuff
 		// assign animsprite the node
 		AnimSprite = GetNode<AnimatedSprite2D>("Sprites");
 
@@ -127,7 +129,7 @@ public partial class Player : CharacterBody2D
 		Vector2 StartPos = GetNode<Marker2D>("StartPos").Position;
 		// make another vector2 to store position
 		Vector2 position = Vector2.Zero;
-		// assign position vector 2 to something
+		// assign position vector 2 to something in this case startpos
 		position = StartPos;
 		// assign actual Position to position vector2
 		Position = position;
@@ -138,6 +140,12 @@ public partial class Player : CharacterBody2D
 		AnimSprite.FlipV = false;
 		// assign idle down as init sprite
 		AnimSprite.Play("idle_down");
+
+	// camera stuff
+		// assign the node to camera
+		PlayerCam = GetNode<Camera2D>("PlayerCam");
+		// enable camera smoothing only after player position has been set
+		PlayerCam.SetDeferred("position_smoothing_enabled", true);
 	}
 	
 	// per frame
