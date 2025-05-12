@@ -16,39 +16,109 @@ public partial class Player : CharacterBody2D
 	// function for sprite control (parameters are the animated sprites and velocity)
 	private void PlaySpriteAnim(AnimatedSprite2D Sprite, Vector2 velocity)
 	{
-		// first check if we are moving diagonally
-		// seperated diagonal sprite control for future case when new sprite for diags
-		// if moving top right
-		if (NormalizedVel.IsEqualApprox(new Vector2(1, -1).Normalized()))
+		// first check if not moving
+		if (velocity == Vector2.Zero)
 		{
-			// if moving top right dont flip sprite
-			AnimSprite.FlipH = false;
-			// play sprite
-			AnimSprite.Play("walk_side_r");
+			// this part works by checking what last animation was being played
+			// check if walk down was last anim
+			if (AnimSprite.Animation == "walk_down")
+			{
+				// then play idle down
+				AnimSprite.Play("idle_down");
+			}
+			// check if walk up was last anim
+			if (AnimSprite.Animation == "walk_up")
+			{
+				// then play idle up
+				AnimSprite.Play("idle_up");
+			}
+			// check if walk side r was last anim and if sprite was not flipped horizontally
+			if (AnimSprite.Animation == "walk_side_r" && !AnimSprite.FlipH)
+			{
+				// then play idle right but not flipped
+				AnimSprite.Play("idle_side_r");
+				AnimSprite.FlipH = false;
+			}
+			// check if walk side r but flipped was last anim
+			if (AnimSprite.Animation == "walk_side_r" && AnimSprite.FlipH)
+			{
+				// then play idle right but stay flipped
+				AnimSprite.Play("idle_side_r");
+				AnimSprite.FlipH = true;
+			}
 		}
-		// if moving top left
-		if (NormalizedVel.IsEqualApprox(new Vector2(-1, -1).Normalized()))
+		
+		// if moving diagonal
+		if (NormalizedVel.IsEqualApprox(new Vector2(-1, 1).Normalized())
+		|| NormalizedVel.IsEqualApprox(new Vector2(1, -1).Normalized())
+		|| NormalizedVel.IsEqualApprox(new Vector2(-1, -1).Normalized())
+		|| NormalizedVel.IsEqualApprox(new Vector2(1, 1).Normalized()))
 		{
-			// if moving top left flip sprite
-			AnimSprite.FlipH = true;
-			// play sprite
-			AnimSprite.Play("walk_side_r");
-		}
-		// if moving bottom right
-		if (NormalizedVel.IsEqualApprox(new Vector2(1, 1).Normalized()))
-		{
-			// if bottom top right dont flip sprite
-			AnimSprite.FlipH = false;
-			// play sprite
-			AnimSprite.Play("walk_side_r");
-		}
-		// if moving bottom left
-		if (NormalizedVel.IsEqualApprox(new Vector2(-1, 1).Normalized()))
-		{
-			// if moving bottom left flip sprite
-			AnimSprite.FlipH = true;
-			// play sprite
-			AnimSprite.Play("walk_side_r");
+			// seperated diagonal sprite control for future case when new sprite for diags
+			// if moving top right
+			if (NormalizedVel.IsEqualApprox(new Vector2(1, -1).Normalized()))
+			{
+				// if moving top right dont flip sprite
+				AnimSprite.FlipH = false;
+				// play sprite
+				AnimSprite.Play("walk_side_r");
+			}
+			// if moving top left
+			else if (NormalizedVel.IsEqualApprox(new Vector2(-1, -1).Normalized()))
+			{
+				// if moving top left flip sprite
+				AnimSprite.FlipH = true;
+				// play sprite
+				AnimSprite.Play("walk_side_r");
+			}
+			// if moving bottom right
+			else if (NormalizedVel.IsEqualApprox(new Vector2(1, 1).Normalized()))
+			{
+				// if bottom top right dont flip sprite
+				AnimSprite.FlipH = false;
+				// play sprite
+				AnimSprite.Play("walk_side_r");
+			}
+			// if moving bottom left
+			else if (NormalizedVel.IsEqualApprox(new Vector2(-1, 1).Normalized()))
+			{
+				// if moving bottom left flip sprite
+				AnimSprite.FlipH = true;
+				// play sprite
+				AnimSprite.Play("walk_side_r");
+			}
+
+			// own checker for diagonals so no sprite bugs
+			if (velocity == Vector2.Zero)
+			{
+				// this part works by checking what last animation was being played
+				// check if walk down was last anim
+				if (AnimSprite.Animation == "walk_down")
+				{
+					// then play idle down
+					AnimSprite.Play("idle_down");
+				}
+				// check if walk up was last anim
+				if (AnimSprite.Animation == "walk_up")
+				{
+					// then play idle up
+					AnimSprite.Play("idle_up");
+				}
+				// check if walk side r was last anim and if sprite was not flipped horizontally
+				if (AnimSprite.Animation == "walk_side_r" && !AnimSprite.FlipH)
+				{
+					// then play idle right but not flipped
+					AnimSprite.Play("idle_side_r");
+					AnimSprite.FlipH = false;
+				}
+				// check if walk side r but flipped was last anim
+				if (AnimSprite.Animation == "walk_side_r" && AnimSprite.FlipH)
+				{
+					// then play idle right but stay flipped
+					AnimSprite.Play("idle_side_r");
+					AnimSprite.FlipH = true;
+				}
+			}	
 		}
 
 		// check if we are moving only the 4 main directions (cardinal)
@@ -57,6 +127,7 @@ public partial class Player : CharacterBody2D
 		|| NormalizedVel.IsEqualApprox(new Vector2(-1, 0))
 		|| NormalizedVel.IsEqualApprox(new Vector2(0, -1)))
 		{
+			// if moving left and right
 			if (Math.Abs(velocity.X) > Math.Abs(velocity.Y))
 			{
 				// if moving right
@@ -84,39 +155,9 @@ public partial class Player : CharacterBody2D
 					AnimSprite.Play("walk_down");
 				}
 			}
-		// check if not moving
-		if (velocity.Length() == 0)
-		{
-			// this part works by checking what last animation was being played
-			// check if walk down was last anim
-			if (AnimSprite.Animation == "walk_down")
-			{
-				// then play idle down
-				AnimSprite.Play("idle_down");
-			}
-			// check if walk up was last anim
-			else if (AnimSprite.Animation == "walk_up")
-			{
-				// then play idle up
-				AnimSprite.Play("idle_up");
-			}
-			// check if walk side r was last anim and if sprite was not flipped horizontally
-			else if (AnimSprite.Animation == "walk_side_r" && !AnimSprite.FlipH)
-			{
-				// then play idle right
-				AnimSprite.Play("idle_side_r");
-			}
-			// check if walk side r but flipped was last anim
-			else if (AnimSprite.Animation == "walk_side_r" && AnimSprite.FlipH)
-			{					// then play idle right but stay flipped
-				AnimSprite.FlipH = true;
-				AnimSprite.Play("idle_side_r");
-			}
 		}
 	}
-}
 	
-
 	// init stuff with ready
 	public override void _Ready()
 	{
@@ -160,7 +201,7 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionPressed("mov_right")) { velocity.X += 1; }
 		if (Input.IsActionPressed("mov_left")) { velocity.X -= 1; }
 
-		// GD.Print(velocity); debug code
+		GD.Print(velocity);
 
 		// if moving
 		if (velocity.Length() != 0)
@@ -173,7 +214,7 @@ public partial class Player : CharacterBody2D
 		}
 
 		// if not moving
-		if (velocity.Length() == 0)
+		if (velocity == Vector2.Zero)
 		{
 			// do sprite control
 			PlaySpriteAnim(AnimSprite, velocity);
