@@ -126,7 +126,7 @@ public partial class Player : CharacterBody2D
 			}
 		}
 	}
-	
+
 	// init stuff with ready
 	public override void _Ready()
 	{
@@ -152,7 +152,7 @@ public partial class Player : CharacterBody2D
 		AnimSprite.Play("idle_down");
 
 	// camera stuff
-		// assign the node to camera
+		// assign the node to camera var
 		PlayerCam = GetNode<Camera2D>("PlayerCam");
 		// enable camera smoothing only after player position has been set
 		PlayerCam.SetDeferred("position_smoothing_enabled", true);
