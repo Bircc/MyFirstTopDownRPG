@@ -261,14 +261,13 @@ script = ExtResource("1_1jxqw")
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_onrkg")
-animation = &"walk_down"
-frame_progress = 0.639167
+animation = &"idle_side_r"
 
 [node name="CollisionMask" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_3iwfv")
 
 [node name="StartPos" type="Marker2D" parent="."]
-position = Vector2(640, 460)
+position = Vector2(330, 171)
 
 [node name="Area2D" type="Area2D" parent="."]
