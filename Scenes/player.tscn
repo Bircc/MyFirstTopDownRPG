@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dvty47c60q04x"]
+[gd_scene load_steps=41 format=3 uid="uid://dvty47c60q04x"]
 
 [ext_resource type="Script" uid="uid://d1vqg087yvbog" path="res://C# scripts/Player.cs" id="1_3smsa"]
 [ext_resource type="Texture2D" uid="uid://baucadavobh86" path="res://16bit assets/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Down-Sheet.png" id="2_8erm5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cfrg35kuxfanb" path="res://16bit assets/Entities/Characters/Body_A/Animations/Walk_Base/Walk_Down-Sheet.png" id="5_gymyn"]
 [ext_resource type="Texture2D" uid="uid://jdyylmghifrh" path="res://16bit assets/Entities/Characters/Body_A/Animations/Walk_Base/Walk_Side-Sheet.png" id="6_pu2lt"]
 [ext_resource type="Texture2D" uid="uid://caf4khccu0820" path="res://16bit assets/Entities/Characters/Body_A/Animations/Walk_Base/Walk_Up-Sheet.png" id="7_ukyrk"]
+[ext_resource type="Script" uid="uid://b0pvlfike0xxb" path="res://Scenes/PlayerCam.cs" id="8_8erm5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_urp6f"]
 atlas = ExtResource("2_8erm5")
@@ -273,3 +274,5 @@ position = Vector2(330, 171)
 [node name="PlayerCam" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
 position_smoothing_speed = 10.0
+script = ExtResource("8_8erm5")
+metadata/_edit_group_ = true
