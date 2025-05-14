@@ -1,11 +1,10 @@
 using Godot;
 using System;
-using System.Runtime.ExceptionServices;
 
 public partial class Player : CharacterBody2D
 {
     // init variables
-    private int Speed = 200;
+    private int Speed = 100;
     // if we need to store velocity temporarily
     private Vector2 velocity;
     private Vector2 Direction;
@@ -32,9 +31,25 @@ public partial class Player : CharacterBody2D
     // camera stuff
         // assign camera node
         PlayerCam = GetNode<Camera2D>("PlayerCam");
-
         // assign camera zoom
         PlayerCam.Zoom = new Vector2(2.5f, 2.5f);
+        // enable smoothing
+        PlayerCam.PositionSmoothingEnabled = true;
+        // adjust smoothing speed
+        PlayerCam.PositionSmoothingSpeed = 5f;
+
+        // turn on horizontal and vertical drag
+        PlayerCam.DragHorizontalEnabled = true;
+        PlayerCam.DragVerticalEnabled = true;
+        // set horizontal and drag conditions
+        PlayerCam.DragHorizontalOffset = 0f;
+        PlayerCam.DragVerticalOffset = 0f;
+        // margins for the drag
+        PlayerCam.DragTopMargin = 0.001f;
+        PlayerCam.DragBottomMargin = 0.001f;
+        PlayerCam.DragLeftMargin = 0.001f;
+        PlayerCam.DragRightMargin = 0.001f;
+
 
     // assign sprite var to node
         AnimatedSprites = GetNode<AnimatedSprite2D>("Sprites");
