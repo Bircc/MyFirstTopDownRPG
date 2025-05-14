@@ -4,6 +4,8 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	// init variables
+	// velocity var for process and physicss process
+	public Vector2 velocity;
 	// Speed var
 	public int Speed = 100;
 	// init Animatedsprites var
@@ -162,7 +164,7 @@ public partial class Player : CharacterBody2D
 	public override void _Process(double delta)
 	{
 		// init velocity and reset every frame
-		var velocity = Vector2.Zero;
+		velocity = Vector2.Zero;
 
 		// movement of x and y
 		if (Input.IsActionPressed("mov_up")) { velocity.Y -= 1; }
@@ -175,10 +177,6 @@ public partial class Player : CharacterBody2D
 		// if moving
 		if (velocity.Length() != 0)
 		{
-			// assign normalized vel so we can grab direction
-			NormalizedVel = velocity.Normalized();
-			// assign the change with speed
-			velocity = NormalizedVel * Speed;
 			// play animation sprite
 			PlaySpriteAnim(AnimSprite, velocity);
 		}
@@ -186,13 +184,31 @@ public partial class Player : CharacterBody2D
 		// if not moving
 		if (velocity == Vector2.Zero)
 		{
-			// set normalized vel to zero to avoid bugs
-			NormalizedVel = Vector2.Zero;
 			// do sprite control
 			PlaySpriteAnim(AnimSprite, velocity);
 		}
-
-		// change position based on velocity and frame rate
-		Position += velocity * (float)delta;
 	}
+    public override void _PhysicsProcess(double delta)
+    {
+	// do movement here for physics based collision
+		// if moving
+		if (velocity.Length() != 0)
+		{
+			// assign normalized vel so we can grab direction
+			NormalizedVel = velocity.Normalized();
+			// set the normalized vel to be multiplied with speed
+			velocity = NormalizedVel * Speed;
+		}
+
+		// if not moving
+		if (velocity == Vector2.Zero)
+		{
+			// set normalized vel to zero to avoid bugs on sprite
+			NormalizedVel = Vector2.Zero;
+		}
+
+		// do move and slide after checking and assigning velocity values
+		MoveAndSlide();
+    }
+
 }
