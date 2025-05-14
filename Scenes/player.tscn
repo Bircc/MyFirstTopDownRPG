@@ -1,5 +1,6 @@
-[gd_scene load_steps=39 format=3 uid="uid://cvo6drcayofpf"]
+[gd_scene load_steps=40 format=3 uid="uid://cvo6drcayofpf"]
 
+[ext_resource type="Script" uid="uid://jollnye7rvor" path="res://C# Scripts/Player.cs" id="1_3smsa"]
 [ext_resource type="Texture2D" uid="uid://baucadavobh86" path="res://16bit assets/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Down-Sheet.png" id="2_8erm5"]
 [ext_resource type="Texture2D" uid="uid://c4u6yk1pf8k7w" path="res://16bit assets/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Side-Sheet.png" id="3_f1ek2"]
 [ext_resource type="Texture2D" uid="uid://dmy6fthhgshky" path="res://16bit assets/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Up-Sheet.png" id="4_tx1dd"]
@@ -251,19 +252,22 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3iwfv"]
-radius = 8.0
+radius = 7.0
 height = 32.0
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 0
+script = ExtResource("1_3smsa")
+metadata/_edit_group_ = true
 
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_onrkg")
-animation = &"walk_down"
+animation = &"idle_down"
 
 [node name="CollisionMask" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_3iwfv")
 
 [node name="StartPos" type="Marker2D" parent="."]
+
+[node name="PlayerCam" type="Camera2D" parent="."]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkvj736xyy4i1"]
+
+[ext_resource type="PackedScene" uid="uid://cvo6drcayofpf" path="res://Scenes/player.tscn" id="1_skmq4"]
+
+[node name="TestWorld" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_skmq4")]
+
+[node name="TempLandmark" type="ColorRect" parent="."]
+offset_left = 84.0
+offset_top = 63.0
+offset_right = 140.0
+offset_bottom = 107.0
