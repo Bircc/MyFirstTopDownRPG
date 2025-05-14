@@ -1116,6 +1116,7 @@ texture = ExtResource("4_kn0ll")
 2:0/animation_frame_2/duration = 1.0
 2:0/animation_frame_3/duration = 1.0
 2:0/0 = 0
+2:0/0/terrain_set = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nmsu1"]
 texture = ExtResource("5_2xsi1")
