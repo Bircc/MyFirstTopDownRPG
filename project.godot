@@ -12,7 +12,7 @@ config_version=5
 
 config/name="FirstTopDownRPG"
 run/main_scene="uid://bkvj736xyy4i1"
-config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]

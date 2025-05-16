@@ -1,0 +1,35 @@
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\bin\Debug\FirstTopDownRPG.deps.json
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\bin\Debug\FirstTopDownRPG.runtimeconfig.json
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\bin\Debug\FirstTopDownRPG.dll
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\bin\Debug\FirstTopDownRPG.pdb
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\bin\Debug\GodotSharp.dll
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\obj\Debug\FirstTopDownRPG.csproj.AssemblyReference.cache
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\obj\Debug\FirstTopDownRPG.GeneratedMSBuildEditorConfig.editorconfig
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\obj\Debug\FirstTopDownRPG.AssemblyInfoInputs.cache
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\obj\Debug\FirstTopDownRPG.AssemblyInfo.cs
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\obj\Debug\FirstTopDownRPG.csproj.CoreCompileInputs.cache
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\obj\Debug\FirstTop.390408C6.Up2Date
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\obj\Debug\FirstTopDownRPG.dll
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\obj\Debug\refint\FirstTopDownRPG.dll
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\obj\Debug\FirstTopDownRPG.pdb
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\obj\Debug\FirstTopDownRPG.genruntimeconfig.cache
+D:\GODOTGAMES\firsttopdownrpg\.godot\mono\temp\obj\Debug\ref\FirstTopDownRPG.dll
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\bin\Debug\FirstTopDownRPG.deps.json
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\bin\Debug\FirstTopDownRPG.runtimeconfig.json
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\bin\Debug\FirstTopDownRPG.dll
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\bin\Debug\FirstTopDownRPG.pdb
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\bin\Debug\GodotSharp.dll
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\obj\Debug\FirstTopDownRPG.csproj.AssemblyReference.cache
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\obj\Debug\FirstTopDownRPG.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\obj\Debug\FirstTopDownRPG.AssemblyInfoInputs.cache
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\obj\Debug\FirstTopDownRPG.AssemblyInfo.cs
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\obj\Debug\FirstTopDownRPG.csproj.CoreCompileInputs.cache
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\obj\Debug\FirstTopDownRPG.sourcelink.json
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\obj\Debug\FirstTop.390408C6.Up2Date
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\obj\Debug\FirstTopDownRPG.dll
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\obj\Debug\refint\FirstTopDownRPG.dll
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\obj\Debug\FirstTopDownRPG.pdb
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\obj\Debug\FirstTopDownRPG.genruntimeconfig.cache
+D:\Visual Studio Cloned Repos\MyFirstTopDownRPG\.godot\mono\temp\obj\Debug\ref\FirstTopDownRPG.dll
