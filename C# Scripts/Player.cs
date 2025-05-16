@@ -80,6 +80,7 @@ public partial class Player : CharacterBody2D
     // assign vars to nodes
         // assign sprite node
         AnimatedSprites = GetNode<AnimatedSprite2D>("Sprites");
+        
     }
 
     // normal frame process
