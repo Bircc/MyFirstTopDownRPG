@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cvo6drcayofpf"]
+[gd_scene load_steps=41 format=3 uid="uid://cvo6drcayofpf"]
 
 [ext_resource type="Script" uid="uid://jollnye7rvor" path="res://C# Scripts/Player.cs" id="1_3smsa"]
 [ext_resource type="Texture2D" uid="uid://baucadavobh86" path="res://16bit assets/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Down-Sheet.png" id="2_8erm5"]
@@ -252,8 +252,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3iwfv"]
-radius = 7.0
-height = 32.0
+radius = 3.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3smsa"]
+radius = 9.0
+height = 38.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_3smsa")
@@ -262,12 +266,23 @@ metadata/_edit_group_ = true
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_onrkg")
-animation = &"idle_down"
+animation = &"walk_side_r"
 
 [node name="CollisionMask" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, 13)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3iwfv")
 
 [node name="StartPos" type="Marker2D" parent="."]
 
 [node name="PlayerCam" type="Camera2D" parent="."]
+
+[node name="FrontDirChecker" type="RayCast2D" parent="."]
+collision_mask = 8
+
+[node name="AreaChecker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="AreaCheckerSize" type="CollisionShape2D" parent="AreaChecker"]
+shape = SubResource("CapsuleShape2D_3smsa")

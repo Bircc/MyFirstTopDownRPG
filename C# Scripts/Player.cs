@@ -10,9 +10,13 @@ public partial class Player : CharacterBody2D
     private Vector2 Direction;
     private Camera2D PlayerCam;
     private AnimatedSprite2D AnimatedSprites;
+    private Marker2D StartPos;
+    private RayCast2D FrontDirChecker;
+    private Area2D AreaChecker;
 
     private Vector2 Movement()
     {
+    // normal movement
         // assign direction as zero each time the function is called
         Direction = Vector2.Zero;
         // handle movement for each cardinal direction
@@ -21,8 +25,15 @@ public partial class Player : CharacterBody2D
         if (Input.IsActionPressed("mov_right")) { Direction.X += 1; }
         if (Input.IsActionPressed("mov_left")) { Direction.X -= 1; }
 
+    // drop down platform movement
+        // if pressed and colliding with edgeplat
+        if (Input.IsActionPressed("drop_down_or_climb"))
+        {
+        }
+
         // return direction
         return Direction;
+
     }
 
     // init process
@@ -50,8 +61,24 @@ public partial class Player : CharacterBody2D
         PlayerCam.DragLeftMargin = 0.001f;
         PlayerCam.DragRightMargin = 0.001f;
 
+    // raycast stuff
+        // set position to check more back
+        FrontDirChecker = GetNode<RayCast2D>("FrontDirChecker");
+        FrontDirChecker.TargetPosition = new Vector2(0, 20);
 
-    // assign sprite var to node
+    // start position of player
+        // assign var to node
+        StartPos = GetNode<Marker2D>("StartPos");
+        // assign whatever position of the marker
+        Vector2 WantPos = Vector2.Zero;
+        WantPos.X = 100;
+        WantPos.Y = 60;
+        StartPos.Position = WantPos;
+        // assign position of player to startpos
+        Position = StartPos.Position;
+
+    // assign vars to nodes
+        // assign sprite node
         AnimatedSprites = GetNode<AnimatedSprite2D>("Sprites");
     }
 
@@ -67,7 +94,7 @@ public partial class Player : CharacterBody2D
     // physics process every frame
     public override void _PhysicsProcess(double delta)
     {
-        // returns a Direction var
+    // returns a Direction var
         // direction is equal to Vector2(0, 0) that determines 1, -1 or 0
         Movement();
         // assign velocity as whatever direction multiplied by speed value
@@ -117,14 +144,14 @@ public partial class Player : CharacterBody2D
                 if (direction.X == 1)
                 {
                     sprite.FlipH = false;
-                    sprite.Play("walk_side_r"); 
+                    sprite.Play("walk_side_r");
                 }
                 else // if moving left
-                { 
+                {
                     sprite.FlipH = true;
                     sprite.Play("walk_side_r");
                 }
-            } 
+            }
             else // moving down or up, overrides left and right
             {
                 if (direction.Y == 1)
@@ -137,7 +164,6 @@ public partial class Player : CharacterBody2D
                 }
             }
         }
-
     } 
 
 }
