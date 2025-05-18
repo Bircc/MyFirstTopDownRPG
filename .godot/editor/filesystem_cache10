@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1747411850
+::res://::1747573804
 icon.svg::CompressedTexture2D/CompressedTexture2D::5552165071347600769::1746880437::1746880662::1::::<><><>0<>0<>a72845f0e1f4ceb7d519b07988ad58d2<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://16bit assets/::1747060045
 Terms.txt::TextFile/TextFile::-1::1746880811::0::1::::<><><>0<>0<><>::
@@ -12,7 +12,7 @@ slime.png::CompressedTexture2D/CompressedTexture2D::3258136081546768143::1747050
 ::res://16bit assets/Entities/::1746880810
 ::res://16bit assets/Entities/Characters/::1746880810
 ::res://16bit assets/Entities/Characters/Body_A/::1746880810
-::res://16bit assets/Entities/Characters/Body_A/Animations/::1746880810
+::res://16bit assets/Entities/Characters/Body_A/Animations/::1747552777
 ::res://16bit assets/Entities/Characters/Body_A/Animations/Carry_Idle/::1746880812
 Carry_Idle_Down-Sheet.png::CompressedTexture2D/CompressedTexture2D::2063736497107667475::1746880810::1746880812::1::::<><><>0<>0<>457239216f2f7a304a6340449f8c6c27<>res://.godot/imported/Carry_Idle_Down-Sheet.png-a4f65c726ffa754836bd8ba867c657fe.ctex::
 Carry_Idle_Side-Sheet.png::CompressedTexture2D/CompressedTexture2D::3680028137431742746::1746880810::1746880812::1::::<><><>0<>0<>67dd62d11ff9a0ef79cf63885087a9e9<>res://.godot/imported/Carry_Idle_Side-Sheet.png-693c151f504f30a499ada2e2309fcdae.ctex::
@@ -33,7 +33,7 @@ Collect_Up-Sheet.png::CompressedTexture2D/CompressedTexture2D::80496131297129803
 Crush_Down-Sheet.png::CompressedTexture2D/CompressedTexture2D::3969731881699503483::1746880810::1746880812::1::::<><><>0<>0<>777c7e71b0b18a05f7f95afc8a6d2341<>res://.godot/imported/Crush_Down-Sheet.png-4d7e2be53d17bceef0ae5e2a2235d5f0.ctex::
 Crush_Side-Sheet.png::CompressedTexture2D/CompressedTexture2D::8217500422365349347::1746880810::1746880812::1::::<><><>0<>0<>fecc957a6a107fbd6b70ee47134dd154<>res://.godot/imported/Crush_Side-Sheet.png-e7cb3c027a799227bd367c15417132d6.ctex::
 Crush_Up-Sheet.png::CompressedTexture2D/CompressedTexture2D::793180934455750216::1746880810::1746880812::1::::<><><>0<>0<>df9d1b0bf39f30d462227b39f1547d8e<>res://.godot/imported/Crush_Up-Sheet.png-a4456c749fc03542f816384f9c15d898.ctex::
-::res://16bit assets/Entities/Characters/Body_A/Animations/Death_Base/::1746880812
+::res://16bit assets/Entities/Characters/Body_A/Animations/Death_Base/::1747553708
 Death_Down-Sheet.png::CompressedTexture2D/CompressedTexture2D::4986728668775514678::1746880810::1746880812::1::::<><><>0<>0<>6731cf40842d201d5a4cef3a5e95d872<>res://.godot/imported/Death_Down-Sheet.png-857c76076131b3a1d12f598763599681.ctex::
 Death_Side-Sheet.png::CompressedTexture2D/CompressedTexture2D::7578268106632221589::1746880810::1746880812::1::::<><><>0<>0<>5a5b6735914e697950e0bdf916ca0c8e<>res://.godot/imported/Death_Side-Sheet.png-ec23224cd7313e6907ff66eeb604e036.ctex::
 Death_Up-Sheet.png::CompressedTexture2D/CompressedTexture2D::3751222101735926731::1746880810::1746880812::1::::<><><>0<>0<>f5a756aea9528195839b5c266eaeae36<>res://.godot/imported/Death_Up-Sheet.png-5033b7b2a40c13d78c4733df63884a45.ctex::
@@ -49,6 +49,14 @@ Hit_Up-Sheet.png::CompressedTexture2D/CompressedTexture2D::6206408030722143600::
 Idle_Down-Sheet.png::CompressedTexture2D/CompressedTexture2D::2427829831302781093::1746880810::1746880812::1::::<><><>0<>0<>c911dd642c2c8996daccb02c39655ed6<>res://.godot/imported/Idle_Down-Sheet.png-5e8734ef3597b19913e4011443efe1ce.ctex::
 Idle_Side-Sheet.png::CompressedTexture2D/CompressedTexture2D::6851531039887753654::1746880810::1746880812::1::::<><><>0<>0<>b1e9678e497f45d2bfae8a2ee9a40a81<>res://.godot/imported/Idle_Side-Sheet.png-67887eabe67703eb150e6f7bf57074ed.ctex::
 Idle_Up-Sheet.png::CompressedTexture2D/CompressedTexture2D::8052965405662476824::1746880810::1746880812::1::::<><><>0<>0<>7ee3189393a4af250b8ae9196d525931<>res://.godot/imported/Idle_Up-Sheet.png-312b8020cd04cc5401489ebc7aaecca8.ctex::
+::res://16bit assets/Entities/Characters/Body_A/Animations/In_Water/::1747554394
+InWater.png::CompressedTexture2D/CompressedTexture2D::6750898898769578698::1747552955::1747552961::1::::<><><>0<>0<>4f4a4b2192a52680aced8eb7aba8434f<>res://.godot/imported/InWater.png-684a97e78e4b26684dff6bcfa9ce30d1.ctex::
+::res://16bit assets/Entities/Characters/Body_A/Animations/In_Water/jump_water_down/::1747576362
+jump_water_down.png::CompressedTexture2D::8463983286680448241::1747576362::1747576370::1::::<><><>0<>0<>92870f0efecef3e1e260addc99bf2b59<>res://.godot/imported/jump_water_down.png-d5bd55083f7620b253ac5295cdc7f423.ctex::
+::res://16bit assets/Entities/Characters/Body_A/Animations/In_Water/jump_water_side/::1747555153
+jump_water_side.png::CompressedTexture2D/CompressedTexture2D::6736369767727964733::1747575595::1747555153::1::::<><><>0<>0<>c68f4e2459f51e44c55d0d669a96c4ee<>res://.godot/imported/jump_water_side.png-67b4c82ba128c9a0f863c80f8b264921.ctex::
+::res://16bit assets/Entities/Characters/Body_A/Animations/In_Water/jump_water_up/::1747575600
+jump_water_up.png::CompressedTexture2D::8208920335460237986::1747575600::1747576370::1::::<><><>0<>0<>3b2f5b90e0aad892c91a26ce0841fd12<>res://.godot/imported/jump_water_up.png-27d7efa9464175d1429b62208709cda1.ctex::
 ::res://16bit assets/Entities/Characters/Body_A/Animations/Pierce_Base/::1746880812
 Pierce_Down-Sheet.png::CompressedTexture2D/CompressedTexture2D::4925232011833121816::1746880810::1746880812::1::::<><><>0<>0<>525b1e50038aeb80f4b5e350b6ba8e30<>res://.godot/imported/Pierce_Down-Sheet.png-677bacba98f79148fc05cfccdbed7c01.ctex::
 Pierce_Side-Sheet.png::CompressedTexture2D/CompressedTexture2D::2321372861819957688::1746880810::1746880812::1::::<><><>0<>0<>ca1a58c77912a66568e3b7817930c54a<>res://.godot/imported/Pierce_Side-Sheet.png-26980751d3e419e23328dc5b5825a54f.ctex::
@@ -595,10 +603,10 @@ TX Tileset Grass.png::CompressedTexture2D/CompressedTexture2D::37775512807057586
 TX Tileset Stone Ground.png::CompressedTexture2D/CompressedTexture2D::272222473624044667::1747058095::1747058256::1::::<><><>0<>0<>efafe5e4dde6c1ed16c5b66a555e9d49<>res://.godot/imported/TX Tileset Stone Ground.png-c32dadc0bc5a035f469df679a1ed690f.ctex::
 TX Tileset Wall.png::CompressedTexture2D/CompressedTexture2D::6330974291857221451::1747058095::1747058256::1::::<><><>0<>0<>b57fb94186b8fa938c670dbf33457e97<>res://.godot/imported/TX Tileset Wall.png-ab5d33f03a48ec82072e42590f203c5e.ctex::
 ::res://C# Scripts/::1747410541
-Player.cs::CSharpScript::661289132056568521::1747411392::0::1::::<>CharacterBody2D<><>0<>0<><>::
-TestWorld.cs::CSharpScript/CSharpScript::4917256803676734384::1747373247::0::1::::<>Node2D<><>0<>0<><>::
-::res://Scenes/::1747411723
-player.tscn::PackedScene::6277596852518384007::1747411723::0::1::::<><><>0<>0<><>::uid://jollnye7rvor::::res://C# Scripts/Player.cs<>uid://baucadavobh86::::res://16bit assets/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Down-Sheet.png<>uid://c4u6yk1pf8k7w::::res://16bit assets/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Side-Sheet.png<>uid://dmy6fthhgshky::::res://16bit assets/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Up-Sheet.png<>uid://cfrg35kuxfanb::::res://16bit assets/Entities/Characters/Body_A/Animations/Walk_Base/Walk_Down-Sheet.png<>uid://jdyylmghifrh::::res://16bit assets/Entities/Characters/Body_A/Animations/Walk_Base/Walk_Side-Sheet.png<>uid://caf4khccu0820::::res://16bit assets/Entities/Characters/Body_A/Animations/Walk_Base/Walk_Up-Sheet.png
-test_world.tscn::PackedScene::3132266170869339902::1747411723::0::1::::<><><>0<>0<><>::uid://ccb7rbkwsl7su::::res://C# Scripts/TestWorld.cs<>uid://cvo6drcayofpf::::res://Scenes/player.tscn<>uid://cv7kkxtv5nrt7::::res://Tilesets/TileSets.tres
-::res://Tilesets/::1747410661
-TileSets.tres::TileSet::6313493438164611090::1747410661::0::1::::<><><>0<>0<><>::uid://25od0r1g1gyq::::res://16bit assets/Environment/Tilesets/Floors_Tiles.png<>uid://hg876iyiq7kj::::res://16bit assets/Environment/Tilesets/Wall_Tiles.png<>uid://cjfpcrfseyb4q::::res://16bit assets/Environment/Tilesets/Wall_Variations.png<>uid://1kq4xcveim4u::::res://16bit assets/Tiny Swords (Update 010)/Resources/Trees/Tree.png<>uid://bendbmttlu8u8::::res://16bit assets/Environment/Tilesets/Dungeon_Tiles.png<>uid://bu80klofiq32f::::res://16bit assets/Environment/Tilesets/Water_tiles.png<>uid://byq1tg8ijmln6::::res://16bit assets/Environment/Props/Static/Trees/Animatedtree2/With Shadow/Tree1_anim_sheet_s.png<>uid://nfs3bjolgaqh::::res://16bit assets/Environment/Props/Static/Trees/Animatedtree2/With Shadow/Tree2_anim_sheet_s.png<>uid://4wwarcb81ji7::::res://16bit assets/Environment/Props/Static/Trees/Animatedtree2/With Shadow/Tree3_anim_sheet_s.png
+Player.cs::CSharpScript::661289132056568521::1747573839::0::1::::<>CharacterBody2D<><>0<>0<><>::
+TestWorld.cs::CSharpScript::4917256803676734384::1747373247::0::1::::<>Node2D<><>0<>0<><>::
+::res://Scenes/::1747556972
+player.tscn::PackedScene::6277596852518384007::1747556966::0::1::::<><><>0<>0<><>::uid://jollnye7rvor::::res://C# Scripts/Player.cs<>uid://baucadavobh86::::res://16bit assets/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Down-Sheet.png<>uid://c4u6yk1pf8k7w::::res://16bit assets/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Side-Sheet.png<>uid://dmy6fthhgshky::::res://16bit assets/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Up-Sheet.png<>uid://c3ggk3ib5r1kg::::res://16bit assets/Entities/Characters/Body_A/Animations/In_Water/InWater.png<>uid://cfrg35kuxfanb::::res://16bit assets/Entities/Characters/Body_A/Animations/Walk_Base/Walk_Down-Sheet.png<>uid://jdyylmghifrh::::res://16bit assets/Entities/Characters/Body_A/Animations/Walk_Base/Walk_Side-Sheet.png<>uid://caf4khccu0820::::res://16bit assets/Entities/Characters/Body_A/Animations/Walk_Base/Walk_Up-Sheet.png
+test_world.tscn::PackedScene::3132266170869339902::1747556972::0::1::::<><><>0<>0<><>::uid://ccb7rbkwsl7su::::res://C# Scripts/TestWorld.cs<>uid://cvo6drcayofpf::::res://Scenes/player.tscn<>uid://cv7kkxtv5nrt7::::res://Tilesets/TileSets.tres
+::res://Tilesets/::1747550176
+TileSets.tres::TileSet::6313493438164611090::1747550176::0::1::::<><><>0<>0<><>::uid://25od0r1g1gyq::::res://16bit assets/Environment/Tilesets/Floors_Tiles.png<>uid://hg876iyiq7kj::::res://16bit assets/Environment/Tilesets/Wall_Tiles.png<>uid://cjfpcrfseyb4q::::res://16bit assets/Environment/Tilesets/Wall_Variations.png<>uid://1kq4xcveim4u::::res://16bit assets/Tiny Swords (Update 010)/Resources/Trees/Tree.png<>uid://bendbmttlu8u8::::res://16bit assets/Environment/Tilesets/Dungeon_Tiles.png<>uid://bu80klofiq32f::::res://16bit assets/Environment/Tilesets/Water_tiles.png<>uid://byq1tg8ijmln6::::res://16bit assets/Environment/Props/Static/Trees/Animatedtree2/With Shadow/Tree1_anim_sheet_s.png<>uid://nfs3bjolgaqh::::res://16bit assets/Environment/Props/Static/Trees/Animatedtree2/With Shadow/Tree2_anim_sheet_s.png<>uid://4wwarcb81ji7::::res://16bit assets/Environment/Props/Static/Trees/Animatedtree2/With Shadow/Tree3_anim_sheet_s.png

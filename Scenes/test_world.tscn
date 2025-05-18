@@ -15,6 +15,7 @@ collision_mask = 6
 [node name="WorldObjects" type="Node2D" parent="."]
 
 [node name="Paths" type="TileMapLayer" parent="WorldObjects"]
+visible = false
 
 [node name="GroundnWater" type="TileMapLayer" parent="WorldObjects"]
 z_index = 3
@@ -22,6 +23,7 @@ tile_map_data = PackedByteArray("AABSAD8ABQACAAMAAABSAD4ABQACAAMAAABSAD0ABQACAAE
 tile_set = ExtResource("2_au00k")
 
 [node name="Tree" type="TileMapLayer" parent="WorldObjects"]
+visible = false
 z_index = 3
 tile_map_data = PackedByteArray("AAAMAB4AAwACAAAAAAAaABAAAwACAAAAAABEAAoAAwACAAAAAAAnAA4AAwACAAAAAAAvAB0AAwACAAAAAABAAB8AAwACAAAAAAA=")
 tile_set = ExtResource("2_au00k")
@@ -32,7 +34,9 @@ tile_map_data = PackedByteArray("AAD+//7/BQAFAAIAAAD+////BQAFAAIAAAD+/wAABQAFAAI
 tile_set = ExtResource("2_au00k")
 
 [node name="Mountains" type="TileMapLayer" parent="WorldObjects"]
+visible = false
 tile_set = ExtResource("2_au00k")
 
 [node name="Structures" type="TileMapLayer" parent="WorldObjects"]
+visible = false
 tile_set = ExtResource("2_au00k")

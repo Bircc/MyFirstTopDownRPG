@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D
 {
@@ -13,6 +14,8 @@ public partial class Player : CharacterBody2D
 	private Marker2D StartPos;
 	private RayCast2D FrontDirChecker;
 	private Area2D AreaChecker;
+	private Node2D RaycastObjCollide;
+	private Vector2 LastDirFace;
 
 	private Vector2 Movement()
 	{
@@ -25,24 +28,46 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionPressed("mov_right")) { Direction.X += 1; }
 		if (Input.IsActionPressed("mov_left")) { Direction.X -= 1; }
 
-	// drop down platform movement
+	// drop down to  water platform movement
 		// if pressed and colliding with edgeplat
-		if (Input.IsActionPressed("drop_down_or_climb"))
+		if (Input.IsActionPressed("drop_down_or_climb")
+		&& RaycastObjCollide?.Name == "GroundnWater")
 		{
+			// debug code GD.Print("should print when i press shift of edge");
+		// actual drop down
+			// first disable moving so no bugs
+			Direction = Vector2.Zero;
+			// direction check first to play right animation
+			if (LastDirFace == Vector2.Up)
+			{
 
+			}
 		}
 
 		// return direction
 		return Direction;
-
 	}
 
 	// init process
 	public override void _Ready()
 	{
-	// camera stuff
+	// assign vars to nodes
+		// assign sprite node
+		AnimatedSprites = GetNode<AnimatedSprite2D>("Sprites");
+		// assign area2d node
+		AreaChecker = GetNode<Area2D>("AreaChecker");
+		// assign raycast node
+		FrontDirChecker = GetNode<RayCast2D>("FrontDirChecker");
+		// assign marker node
+		StartPos = GetNode<Marker2D>("StartPos");
 		// assign camera node
 		PlayerCam = GetNode<Camera2D>("PlayerCam");
+
+	// connect signal to new functions
+		// for player area2d
+		AreaChecker.Connect("body_entered", new Callable(this, nameof(PlayerEnter)));
+
+	// camera stuff
 		// assign camera zoom
 		PlayerCam.Zoom = new Vector2(2.5f, 2.5f);
 		// enable smoothing
@@ -65,11 +90,15 @@ public partial class Player : CharacterBody2D
 	// raycast stuff
 		// set position to check more back
 		FrontDirChecker = GetNode<RayCast2D>("FrontDirChecker");
-		FrontDirChecker.TargetPosition = new Vector2(0, 20);
+		// set length to 20px whatever direction
+		FrontDirChecker.TargetPosition = new Vector2(0, 12);
+		// set offset to feet area
+		FrontDirChecker.Position = new Vector2(0, 13);
+		// init raycastobjcollide
+		RaycastObjCollide = RaycastCollide();
 
-	// start position of player
-		// assign var to node
-		StartPos = GetNode<Marker2D>("StartPos");
+
+	// start direction and position of player
 		// assign whatever position of the marker
 		Vector2 WantPos = Vector2.Zero;
 		WantPos.X = 100;
@@ -77,34 +106,34 @@ public partial class Player : CharacterBody2D
 		StartPos.Position = WantPos;
 		// assign position of player to startpos
 		Position = StartPos.Position;
-
-	// assign vars to nodes
-		// assign sprite node
-		AnimatedSprites = GetNode<AnimatedSprite2D>("Sprites");
-		
-		
-		
-		
-		
-		
-		
+		// init facing direction
+		AnimatedSprites.Play("idle_down");
 	}
 
 	// normal frame process
 	public override void _Process(double delta)
 	{
-		// handle sprite control
+	// function to grab last direction facing and return variable vector2 for last direction
+		// use return lastdir function to grab LastDirFace Vector2
+		LastDirFace = GrabLastDirFace(AnimatedSprites);
+		// debug to print last dir just in case its wrong
+		GD.Print("Last Direction was: " + LastDirFace);
+	// handle sprite control
 		// pass direction and animatedsprites node
 		SpriteContol(Direction, AnimatedSprites);
-
+	// raycast movement
+		RaycastMove();
+	// raycast object grabbing
+		RaycastObjCollide = RaycastCollide();
+		// debug code GD.Print("Raycast checking for collisions colliding with: " + RaycastObjCollide?.Name);
 	}
 
 	// physics process every frame
 	public override void _PhysicsProcess(double delta)
 	{
-	// returns a Direction var
+	// movement
 		// direction is equal to Vector2(0, 0) that determines 1, -1 or 0
-		Movement();
+		Movement(); // returns a Direction var
 		// assign velocity as whatever direction multiplied by speed value
 		Velocity = Direction.Normalized() * Speed;
 		// assign Velocity as a tempvar for checking
@@ -112,11 +141,12 @@ public partial class Player : CharacterBody2D
 		// move and slide doesn't take parameters it just bases it on the
 		// internal value of Velocity and Vector.Up
 		MoveAndSlide();
-		// debug // code GD.Print("Velocity:" + Velocity);
+	// end of movement
+		// debug code GD.Print("Velocity:" + Velocity);
+
 	}
 
-	// only accepts two parameters velocity and an animatedsprite2d
-	// that is called sprite inside the function
+	// only accepts two parameters velocity and an animatedsprite2d that is called sprite inside the function
 	private void SpriteContol(Vector2 direction, AnimatedSprite2D sprite)
 	{
 		// if not moving
@@ -172,6 +202,74 @@ public partial class Player : CharacterBody2D
 				}
 			}
 		}
-	} 
+	}
 
+// raycast functions
+	// function for raycast movement
+	private void RaycastMove()
+	{
+		// while moving do raycast movement
+		if (velocity != Vector2.Zero)
+		{
+			// change angle if moving
+			// .Angle returns radians despite its name, subtract 90 degrees for the offset
+			FrontDirChecker.Rotation = velocity.Angle() - Mathf.Pi / 2;
+		}
+	}
+
+	private Node2D RaycastCollide()
+	{
+		// make local Node2D var collidingobj
+		Node2D CollidingObj = null;
+		// first check if raycast is colliding
+		if (FrontDirChecker.IsColliding())
+		{
+			// if colliding get that object
+			// make colliderobj to store object temporarily for checks
+			var ColliderObj = FrontDirChecker.GetCollider();
+			// check if it of of Node2D class or subclass and assign it to body
+			if (ColliderObj is Node2D body)
+			{
+				// if it is assign it to the local var
+				CollidingObj = body; 
+			}
+		} // and return to be used
+		return CollidingObj;
+	}
+// player area functions
+	// function for player area collision signal
+	private void PlayerEnter(Node2D body)
+	{
+		GD.Print("PlayerArea collision test, Collided with a: " + body.Name);
+	}
+
+// grab last dir using sprite only works if standing still because:
+	// direction will be 0, 0 and i need a value for last direction
+	private Vector2 GrabLastDirFace(AnimatedSprite2D sprite)
+	{
+		// init direction var
+		var LastDirection = Vector2.Zero;
+	// make dictionary for sprite and value it returns
+		Dictionary<string, Vector2> AnimationDir = new Dictionary
+		<string, Vector2> // dictionary containing string of animation for key
+		// and vector2 as the direction of that animation
+		{
+			// make three cases for animation
+			{"idle_down", new Vector2(0, 1)},
+			{"idle_up", new Vector2(0, -1)},
+			{"idle_side_r" , new Vector2(1, 0)}
+		};
+		// if the animation is that specific animation return the last direction
+		if (AnimationDir.TryGetValue(sprite.Animation, out Vector2 value))
+		{
+			// first check if left
+			if (sprite.FlipH)
+			{
+				// reverse x
+				value.X = -value.X;
+			}
+			LastDirection = value;
+		}
+		return LastDirection;
+	}
 }
