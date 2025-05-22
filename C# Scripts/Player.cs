@@ -142,7 +142,7 @@ public partial class Player : CharacterBody2D
 	// raycast object grabbing
 		RaycastObjCollide = RaycastCollide();
 		// debug code GD.Print("Raycast checking for collisions colliding with: " + RaycastObjCollide?.Name);
-		PlayerTile();
+		PlayerTileHandler();
 	}
 
 	// physics process every frame
@@ -290,7 +290,7 @@ public partial class Player : CharacterBody2D
 		return LastDirection;
 	}
 // function for checking which tile the player is standing on
-	private void PlayerTile()
+	private void PlayerTileHandler()
 	{
 		// get parent node for all tilemaplayers
 		var TileMapLayParents = GetNode<Node2D>("../WorldObjects");
@@ -302,21 +302,21 @@ public partial class Player : CharacterBody2D
 			{
 				// we are now looping through each TileMapLayer Node
 				// first grab player node
-				var PlayerGlobalPos = GlobalPosition;
+				Vector2 PlayerGlobalPos = GlobalPosition;
 				// use GlobalPosition to grab the localpos of TileMapLayer node
-				var TileMapPos = Tilemap.ToLocal(GlobalPosition);
-				// use localpos to grab tile coordinates
-				var TileMapCords = Tilemap.GetCellTileData((Vector2I)TileMapPos);
-
-				// we are now in the tile coordinates e.g: (0, 4) etc.
-
-				GD.Print("Lets test this, currently on:" + TileMapPos + TileMapCords);
-
+				// since tilemaplayers are children of main node, this won't matter
+				// but its good practice
+				Vector2 TileMapPos = Tilemap.ToLocal(GlobalPosition);
+				// convert that local basis for converting it to tilemap coordinates
+				Vector2I TileCoords = Tilemap.LocalToMap(TileMapPos);
+				// use those coordinates to get the tilemapdata
+				TileData TileMapData = Tilemap.GetCellTileData(TileCoords);
+				
+				// we finally got the iteration + each tile map data
+				// so now check what tiletype it is using custom data layers
+				// convert to string because apparently C# cant unpack the variant
+				var TileTypeChecker = (String)TileMapData?.GetCustomData("TileType");
 			}
 		}
-
 	}
-
-
-
 }

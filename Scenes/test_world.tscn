@@ -8,7 +8,6 @@
 script = ExtResource("1_707cn")
 
 [node name="Player" parent="." instance=ExtResource("1_skmq4")]
-z_index = 4
 
 [node name="WorldObjects" type="Node2D" parent="."]
 
@@ -22,6 +21,7 @@ tile_set = ExtResource("2_au00k")
 
 [node name="Paths" type="TileMapLayer" parent="WorldObjects"]
 visible = false
+tile_set = ExtResource("2_au00k")
 
 [node name="Mountains" type="TileMapLayer" parent="WorldObjects"]
 visible = false
