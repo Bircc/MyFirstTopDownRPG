@@ -3,21 +3,31 @@ using System;
 
 
 // unorganized code, because this is just a test world to use while making code
-// real worlds will be randomly generated with noise
+// real worlds will be randomly generated with noise (starting to think this is impossible at the level im at)
 public partial class TestWorld : Node2D
 {
+// init vars
     // temp game fullscreen so i can debug
     private bool IsFullscreen = true;
+    // player node var
+    private CharacterBody2D Player;
+// grabbing all tilemap layer nodes
+    private Node2D WorldObjects;
+
 
     public override void _Ready()
     {
+    // assign player var to node
+        Player = GetNode<CharacterBody2D>("Player");
     // clamp camera to world
         var PlayerCam = GetNode<Camera2D>("Player/PlayerCam");
         // limit camera depending on world size
         // playercamera size is the same as viewport size
         // zoom is altered in code
-
-
+    // enable y sort
+        YSortEnabled = true;
+    // init parent of all tilemaplayer nodes
+        WorldObjects = GetNode<Node2D>("WorldObjects");
 
     // gonna temporarily set camera limit to world limit
         // limit top left to world origin index (0, 0)
@@ -55,5 +65,4 @@ public partial class TestWorld : Node2D
             IsFullscreen = false;
         }
     }
-
 }

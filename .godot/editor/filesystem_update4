@@ -1,5 +1,5 @@
 res://C# Scripts/Player.cs
-res://Scenes/player.tscn
-res://Tilesets/TileSets.tres
 res://Scenes/test_world.tscn
+res://Tilesets/TileSets.tres
+res://Scenes/player.tscn
 res://C# Scripts/TestWorld.cs

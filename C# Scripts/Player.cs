@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 public partial class Player : CharacterBody2D
 {
@@ -33,7 +34,7 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionPressed("drop_down_or_climb")
 		&& RaycastObjCollide?.Name == "GroundnWater")
 		{
-			// debug code GD.Print("should print when i press shift of edge");
+			// debug code GD.Print("should print when i press q on edge");
 		// actual drop down
 			// first disable moving so no bugs
 			Direction = Vector2.Zero;
@@ -42,7 +43,20 @@ public partial class Player : CharacterBody2D
 			{
 
 			}
+			if (LastDirFace == Vector2.Down)
+			{
+
+			}
+			if (LastDirFace == Vector2.Right)
+			{
+
+			}
+			if (LastDirFace == Vector2.Left)
+			{
+
+			}
 		}
+		// add new movement for while in water
 
 		// return direction
 		return Direction;
@@ -98,7 +112,9 @@ public partial class Player : CharacterBody2D
 		RaycastObjCollide = RaycastCollide();
 
 
-	// start direction and position of player
+	// start direction and position of etc. player stuff
+		// enable y sort
+		YSortEnabled = true;
 		// assign whatever position of the marker
 		Vector2 WantPos = Vector2.Zero;
 		WantPos.X = 100;
@@ -126,6 +142,7 @@ public partial class Player : CharacterBody2D
 	// raycast object grabbing
 		RaycastObjCollide = RaycastCollide();
 		// debug code GD.Print("Raycast checking for collisions colliding with: " + RaycastObjCollide?.Name);
+		PlayerTile();
 	}
 
 	// physics process every frame
@@ -272,4 +289,34 @@ public partial class Player : CharacterBody2D
 		}
 		return LastDirection;
 	}
+// function for checking which tile the player is standing on
+	private void PlayerTile()
+	{
+		// get parent node for all tilemaplayers
+		var TileMapLayParents = GetNode<Node2D>("../WorldObjects");
+		// loop through parent for all child and put it in var TileMapLay
+		foreach (var TileMapLay in TileMapLayParents.GetChildren())
+		{
+			// if TileMapLay is of TileMapLayer origin, call it Tilemap to use it
+			if (TileMapLay is TileMapLayer Tilemap)
+			{
+				// we are now looping through each TileMapLayer Node
+				// first grab player node
+				var PlayerGlobalPos = GlobalPosition;
+				// use GlobalPosition to grab the localpos of TileMapLayer node
+				var TileMapPos = Tilemap.ToLocal(GlobalPosition);
+				// use localpos to grab tile coordinates
+				var TileMapCords = Tilemap.GetCellTileData((Vector2I)TileMapPos);
+
+				// we are now in the tile coordinates e.g: (0, 4) etc.
+
+				GD.Print("Lets test this, currently on:" + TileMapPos + TileMapCords);
+
+			}
+		}
+
+	}
+
+
+
 }
