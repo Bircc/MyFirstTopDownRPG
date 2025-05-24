@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 
 public partial class Player : CharacterBody2D
 {
@@ -17,18 +16,27 @@ public partial class Player : CharacterBody2D
 	private Area2D AreaChecker;
 	private Node2D RaycastObjCollide;
 	private Vector2 LastDirFace;
+	private bool IsDropping;
+	private List<TileData> ListPlayerTiles;
+	private bool InWater;
+	private bool InGround;
+	private bool CanSwim;
+
 
 	private Vector2 Movement()
 	{
 	// normal movement
 		// assign direction as zero each time the function is called
 		Direction = Vector2.Zero;
+		// set new params before you can move like if you are dropping, etc.
+		if (!IsDropping)
+		{
 		// handle movement for each cardinal direction
-		if (Input.IsActionPressed("mov_up")) { Direction.Y -= 1; }
-		if (Input.IsActionPressed("mov_down")) { Direction.Y += 1; }
-		if (Input.IsActionPressed("mov_right")) { Direction.X += 1; }
-		if (Input.IsActionPressed("mov_left")) { Direction.X -= 1; }
-
+			if (Input.IsActionPressed("mov_up")) { Direction.Y -= 1; }
+			if (Input.IsActionPressed("mov_down")) { Direction.Y += 1; }
+			if (Input.IsActionPressed("mov_right")) { Direction.X += 1; }
+			if (Input.IsActionPressed("mov_left")) { Direction.X -= 1; }
+		}
 	// drop down to  water platform movement
 		// if pressed and colliding with edgeplat
 		if (Input.IsActionPressed("drop_down_or_climb")
@@ -36,28 +44,28 @@ public partial class Player : CharacterBody2D
 		{
 			// debug code GD.Print("should print when i press q on edge");
 		// actual drop down
-			// first disable moving so no bugs
-			Direction = Vector2.Zero;
 			// direction check first to play right animation
 			if (LastDirFace == Vector2.Up)
 			{
-
+				GrabLerpPos(LastDirFace);
+				SpriteContol(LastDirFace, AnimatedSprites);
 			}
 			if (LastDirFace == Vector2.Down)
 			{
-
+				GrabLerpPos(LastDirFace);
+				SpriteContol(LastDirFace, AnimatedSprites);
 			}
 			if (LastDirFace == Vector2.Right)
 			{
-
+				GrabLerpPos(LastDirFace);
+				SpriteContol(LastDirFace, AnimatedSprites);
 			}
 			if (LastDirFace == Vector2.Left)
 			{
-
+				GrabLerpPos(LastDirFace);
+				SpriteContol(LastDirFace, AnimatedSprites);
 			}
 		}
-		// add new movement for while in water
-
 		// return direction
 		return Direction;
 	}
@@ -133,7 +141,7 @@ public partial class Player : CharacterBody2D
 		// use return lastdir function to grab LastDirFace Vector2
 		LastDirFace = GrabLastDirFace(AnimatedSprites);
 		// debug to print last dir just in case its wrong
-		GD.Print("Last Direction was: " + LastDirFace);
+		GD.Print("Last Direction Facing was: " + LastDirFace);
 	// handle sprite control
 		// pass direction and animatedsprites node
 		SpriteContol(Direction, AnimatedSprites);
@@ -142,12 +150,17 @@ public partial class Player : CharacterBody2D
 	// raycast object grabbing
 		RaycastObjCollide = RaycastCollide();
 		// debug code GD.Print("Raycast checking for collisions colliding with: " + RaycastObjCollide?.Name);
-		PlayerTileHandler();
+	// grab list of player tiles
+		ListPlayerTiles = PlayerTiles();
+	// If in certain tiles do certain things
+		UseTileType();
 	}
 
 	// physics process every frame
 	public override void _PhysicsProcess(double delta)
 	{
+	// dropping to water
+
 	// movement
 		// direction is equal to Vector2(0, 0) that determines 1, -1 or 0
 		Movement(); // returns a Direction var
@@ -160,37 +173,31 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	// end of movement
 		// debug code GD.Print("Velocity:" + Velocity);
-
 	}
 
 	// only accepts two parameters velocity and an animatedsprite2d that is called sprite inside the function
 	private void SpriteContol(Vector2 direction, AnimatedSprite2D sprite)
 	{
-		// if not moving
-		if (direction == Vector2.Zero)
+		// use dictionaries for shorter not moving checker
+		Dictionary<string, string> IdleChecker = new Dictionary<string, string>
 		{
-		// this sprite contol works by checking last sprite
-			// check last sprite
-			// up
-			if (sprite.Animation == "walk_up")
+			{"walk_up", "idle_up"},
+			{"walk_down", "idle_down"},
+			{"walk_side_r", "idle_side_r"}
+		};
+
+		// if not moving and not dropping, cant swim
+		if (direction == Vector2.Zero && !IsDropping && !CanSwim)
+		{
+			// get key value
+			if (IdleChecker.TryGetValue(sprite.Animation, out String IdleAnimation))
 			{
-				sprite.Play("idle_up");
-			}
-			// down
-			if (sprite.Animation == "walk_down")
-			{
-				sprite.Play("idle_down");
-			}
-			// left and right same idle sprite
-			// just flipped
-			if (sprite.Animation == "walk_side_r")
-			{
-				sprite.Play("idle_side_r");
+				sprite.Play(IdleAnimation);
 			}
 		}
 
-		// if moving
-		if (direction != Vector2.Zero)
+		// if moving and not dropping, cant swim
+		if (direction != Vector2.Zero && !IsDropping && !CanSwim)
 		{
 			// first check if moving left or right
 			if (Math.Abs(direction.X) > Math.Abs(direction.Y))
@@ -219,6 +226,30 @@ public partial class Player : CharacterBody2D
 				}
 			}
 		}
+		if (IsDropping) // if dropping check for sprite to play based on lastdirface
+		{	
+			// use dictionaries for the checking of sprite to play again
+			Dictionary<Vector2, String> DropAnimCheck= new Dictionary<Vector2, String>
+			{
+				// make key values
+				{Vector2.Up, "jump_water_up"},
+				{Vector2.Down, "jump_water_down"},
+				{Vector2.Right, "jump_water_side_r"},
+				{Vector2.Left, "jump_water_side_r"}
+			};
+			// check if correlated
+			if (DropAnimCheck.TryGetValue(direction, out String DropAnimToPlay))
+			{
+				sprite.Play(DropAnimToPlay);
+			}
+		}
+
+		// if you can swim use swim anim
+		if (CanSwim)
+		{
+			sprite.Play("in_water");
+		}
+
 	}
 
 // raycast functions
@@ -289,9 +320,11 @@ public partial class Player : CharacterBody2D
 		}
 		return LastDirection;
 	}
-// function for checking which tile the player is standing on
-	private void PlayerTileHandler()
+// function for grabbing list of playertiles which tile the player is standing on
+	private List<TileData> PlayerTiles()
 	{
+		// make new list
+		var TileDataList = new List<TileData>();
 		// get parent node for all tilemaplayers
 		var TileMapLayParents = GetNode<Node2D>("../WorldObjects");
 		// loop through parent for all child and put it in var TileMapLay
@@ -305,18 +338,83 @@ public partial class Player : CharacterBody2D
 				Vector2 PlayerGlobalPos = GlobalPosition;
 				// use GlobalPosition to grab the localpos of TileMapLayer node
 				// since tilemaplayers are children of main node, this won't matter
-				// but its good practice
+				// but its good practice?
 				Vector2 TileMapPos = Tilemap.ToLocal(GlobalPosition);
 				// convert that local basis for converting it to tilemap coordinates
 				Vector2I TileCoords = Tilemap.LocalToMap(TileMapPos);
 				// use those coordinates to get the tilemapdata
 				TileData TileMapData = Tilemap.GetCellTileData(TileCoords);
-				
-				// we finally got the iteration + each tile map data
-				// so now check what tiletype it is using custom data layers
-				// convert to string because apparently C# cant unpack the variant
-				var TileTypeChecker = (String)TileMapData?.GetCustomData("TileType");
+				if (TileMapData != null)
+				{
+					TileDataList.Add(TileMapData);
+				}
 			}
 		}
+		return TileDataList;
+	}
+
+	private void UseTileType()
+	{
+		    // Reset flags at the start of each call
+		InWater = false;
+		InGround = false;
+		CanSwim = false;
+		
+		// iterate through tiles and grab tile type
+		foreach (TileData Tile in ListPlayerTiles)
+		{
+			// extract as string because C# can't do it itself
+			var GrabType = (String)Tile.GetCustomData("TileType");
+			
+			// if its water
+			if (GrabType == "water")
+			{
+				InWater = true;
+			}
+			// if its ground
+			if (GrabType == "ground")
+			{
+				InGround = true;
+			}
+		}
+
+		// lazy state machine
+		// check if both water n ground
+		if (InWater && InGround)
+		{
+			// cant swim
+			CanSwim = false;
+		}
+		// if only water
+		else if (InWater)
+		{
+			// can swim
+			CanSwim = true;
+		}
+	}
+	private void GrabLerpPos(Vector2 DirectionOfDrop) 
+	{
+		// disable the collision mask for now
+		CollisionShape2D CollisionMask = GetNode<CollisionShape2D>("CollisionMask");
+		CollisionMask.Disabled = true;
+
+		// set is dropping to true for movement disabler
+		IsDropping = true;
+
+		// also set variable to be used
+		Vector2 StartPos = Position;
+		// end is just adding the direction multiplied by some value for the jump space
+		Vector2 EndPos = StartPos + DirectionOfDrop * 20;
+	
+		// use tweening for easier transition
+		var Tween = CreateTween();
+		Tween.TweenProperty(this, "position", EndPos, 1).SetEase(Tween.EaseType.Out);
+		// tween auto destroys itself
+
+		// this just insta calls the finish signal here without making new object and calling it
+		Tween.Finished += () => {
+			CollisionMask.Disabled = false;
+			IsDropping = false;
+		};
 	}
 }

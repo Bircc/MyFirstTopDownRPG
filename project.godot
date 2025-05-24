@@ -63,10 +63,9 @@ drop_down_or_climb={
 [layer_names]
 
 2d_physics/layer_1="Player"
-2d_physics/layer_2="WaternGround"
+2d_physics/layer_2="GroundnWater"
 2d_physics/layer_3="Trees"
 2d_physics/layer_4="PlayerDetectArea"
-2d_physics/layer_5="GroundnWater"
 
 [physics]
 
